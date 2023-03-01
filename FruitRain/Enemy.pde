@@ -10,7 +10,7 @@ public class Enemy {
   final private int BLACK = color(0, 0, 0);  
   final private int RED = color(255, 0, 0);
   final private int GREEN = color(0, 255, 0); 
-  //final private int PURPLE = color(255, 0, 255);
+  final private int PURPLE = color(255, 0, 255);
   final private int YELLOW = color(255, 255, 0);
   private int enemyStartingEdge; //enemy's random starting location (either x or y)
   private float enemyX;     //x coordinate of the center of the enemy circle
@@ -24,7 +24,7 @@ it easier for testing the game. */
 //We probably want the "enemies" to either move very slowly or not move at all
   private FruitRain game;
   private int type;
-  private int timeSinceSpawned;
+  //private int timeSinceSpawned;
   
   /**
    * Method: Enemy class constructor
@@ -38,7 +38,8 @@ it easier for testing the game. */
    *
    *   Colors may be changed if we can't get pngs of fruit working or something
    */
-  public Enemy(FruitRain game) {
+  public Enemy(FruitRain game, int type) {
+    this.type = type;
     this.game = game;
     spawnEnemy();
   }
@@ -74,30 +75,30 @@ it easier for testing the game. */
    */
   public void spawnEnemy()
   {
-    timeSinceSpawned = 0;
-    type = 2 + (int) random(3); //type is randomly generated (1 to 4).
+    //timeSinceSpawned = 0;
+    //type = 1 + (int) random(3); //type is randomly generated (1 to 4).
     //We need to make it so that we get one of each type of fruit
-    /*
-    if(type == 1) //Chaser Enemy
+    
+    if(type == 1) //Chaser Enemy. Apples
     {
       enemySize = 50;
       enemyColor = PURPLE;
       enemySpeed = 4;
     }
-    */
-    if (type == 2) //Fast Enemy
+    
+    if (type == 2) //Fast Enemy. Oranges
     {
       enemySize = 20;
       enemyColor = YELLOW;
       enemySpeed = 11;
     }
-    else if (type == 3) //Big Enemy
+    else if (type == 3) //Big Enemy. Bananas
     {
       enemySize = 200;
       enemyColor = GREEN;
       enemySpeed = 4;
     }    
-    else     //Regular Enemy
+    else     //Regular Enemy. 
     {
       enemySize = 50;
       enemyColor = RED;
@@ -109,23 +110,7 @@ it easier for testing the game. */
     //0 - left, 1 - right, 2 - top, 3 - bottom
     //enemyStartingEdge = (int) random(4); 
     enemyStartingEdge = 2;
-    /*
-    if(enemyStartingEdge == 0) //Spawn from Left Edge of the Window 
-    {
-      //set x to a value that is to the left of the window's left edge. 
-      //The enemy circle will be invisible
-      enemyX = 0 - enemySize - 5;
-      //set y to a random value between 0 and the window's height.
-      enemyY = random(0, game.height);
-    }
-    else if(enemyStartingEdge == 1)  //Spawn from Right Edge of the Window 
-    {
-      //set x to be outside the right edge of the window
-      enemyX = game.width + enemySize + 5;  
-      //set y to a random value between 0 and the window's height
-      enemyY = random(0, game.height); 
-    }
-    */
+    
     if(enemyStartingEdge == 2) //Spawn from Top Edge of the Window 
     {
       //set x to a random value between 0 and the window's width
@@ -133,15 +118,6 @@ it easier for testing the game. */
       //set y to be above the top edge of the window
       enemyY = 0 - enemySize - 5; 
     }
-    /*
-    else  //enemyStartingEdge == 3: Spawn from Bottom Edge of the Window 
-    {
-      //set x to a random value between 0 and the window's width
-      enemyX = random(0, game.width); 
-      //set y to be below the bottom edge of the window
-      enemyY = game.height + enemySize + 5; 
-    }
-    */
     
     fill(enemyColor);
     circle(enemyX, enemyY, enemySize);
@@ -155,7 +131,7 @@ it easier for testing the game. */
    */
   public void drawEnemy()
   {
-    timeSinceSpawned ++;
+    //timeSinceSpawned ++;
     
     //calculate the shift from current location to the next
     float positionDelta = enemySpeed * enemySpeedAdjustor;
@@ -171,33 +147,12 @@ it easier for testing the game. */
       spawnEnemy();
     }
     
-    
-    /* Unused starting edges
-    else if(enemyStartingEdge == 0)//left spawn, move righward
-    {
-      //add change to the enemy's x coordinate
-      enemyX += positionDelta;
-    }
-    else if (enemyStartingEdge == 1)//right spawn, move leftward
-    {
-      //subtract change from the enemy's x coordinate
-      enemyX -= positionDelta;
-    }
-    */
-    
     if (enemyStartingEdge == 2)//top spawn, move downward
     {
       //add change to the enemy's y coordinate
       enemyY += positionDelta;
     }
     
-    /*
-    else//bottom spawn, move upward
-    {
-      //subtract change from the enemy's y coordinate
-      enemyY -= positionDelta;
-    }
-    */
     
     fill(enemyColor);
     circle(enemyX, enemyY, enemySize); 
@@ -237,10 +192,6 @@ it easier for testing the game. */
     
     //For type 1 chaser enemy, if the time passed since spawned
     //is greater than 300, it also disappears.
-    if(type == 1 && timeSinceSpawned > 300)
-    {
-      return true;
-    }
     
     return false;
   }

@@ -21,6 +21,8 @@ import java.util.Scanner;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
+//These are the cloned files ig?
+
 final public int BLACK = color(0, 0, 0);
 final public int SKY = color(113, 212, 240);
 final public int RED = color(255, 0, 0);
@@ -297,7 +299,7 @@ public ArrayList<Question> loadQuestions() {
   ArrayList<Question> questions = new ArrayList<Question>();
   while(true) {
       try {
-        Scanner inputFile = new Scanner(new File("C:\\Users\\jtspo\\Downloads\\CircleDodge\\FruitRain\\FruitRain\\Test2.csv")); //replace with actual file location
+        Scanner inputFile = new Scanner(new File("C:\\Users\\jtspo\\Downloads\\CircleDodge\\FruitRain\\FruitRain\\TAP_Test\\FruitRain\\Test2.csv")); //replace with actual file location
         String regex = "(\\s)*,(\\s)*";
         inputFile.useDelimiter(regex);
         int index = 0;
