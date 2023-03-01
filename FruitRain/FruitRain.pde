@@ -83,7 +83,7 @@ public Scanner input = new Scanner(System.in);
   //player = new Player(this);
   enemies = new Enemy[4];
   for (int i =0; i<4; i++) {
-    enemies[i] = new Enemy(this); //an enemy is declared, we must ensure we get one of each type
+    enemies[i] = new Enemy(this, i + 1); //an enemy is declared, we must ensure we get one of each type
   }
 
 }
@@ -149,17 +149,18 @@ void draw() {
         fill(RASPBERRY);
         text("Health points: " + healthPoints, 5, 50);
         
-        int x = 150;
-        int y = 300;
+        //int x = 150;
+        //int y = 300;
         correct = questions.get(quizIndex).getCorrect();
         
         fill(RASPBERRY);
         text(questions.get(quizIndex).getText(), 450, 100); //Aim for the top middle of the screen)
         for(int j = 1; (j - 1) < questions.get(quizIndex).getAnswers().size(); j++) {
           //**To-do**: Edit this block of codeto draw fruit and write text to line up with said fruit
+          enemies[j - 1].drawEnemy();
           fill(RASPBERRY);
-          text(j + ": " + questions.get(quizIndex).getAnswers().get(j-1), x, y);
-          y+= 125;
+          text(j + ": " + questions.get(quizIndex).getAnswers().get(j-1), enemies[j-1].getEnemyX(), enemies[j-1].getEnemyY());
+          //y+= 125;
         }
       
         guess = 5;
