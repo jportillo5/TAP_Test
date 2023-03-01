@@ -76,7 +76,6 @@ it easier for testing the game. */
   public void spawnEnemy()
   {
     //timeSinceSpawned = 0;
-    //type = 1 + (int) random(3); //type is randomly generated (1 to 4).
     //We need to make it so that we get one of each type of fruit
     
     if(type == 1) //Chaser Enemy. Apples
@@ -85,8 +84,7 @@ it easier for testing the game. */
       enemyColor = PURPLE;
       enemySpeed = 4;
     }
-    
-    if (type == 2) //Fast Enemy. Oranges
+    else if (type == 2) //Fast Enemy. Oranges
     {
       enemySize = 20;
       enemyColor = YELLOW;
@@ -98,7 +96,7 @@ it easier for testing the game. */
       enemyColor = GREEN;
       enemySpeed = 4;
     }    
-    else     //Regular Enemy. 
+    else if (type == 4)    //Regular Enemy. 
     {
       enemySize = 50;
       enemyColor = RED;
